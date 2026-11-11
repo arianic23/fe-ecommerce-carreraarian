@@ -1,0 +1,19 @@
+.pedidos-container { padding: 2rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc; min-height: 100vh; }
+.card-form { background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+.form-row { margin-bottom: 1rem; }
+.form-row.inline { display: flex; gap: 1rem; }
+.form-control { padding: 0.6rem; border: 1px solid #cbd5e1; border-radius: 0.375rem; flex: 1; }
+.form-control.small { max-width: 90px; }
+.btn-secondary { background: #3b82f6; color: white; border: none; padding: 0.6rem 1rem; border-radius: 0.375rem; cursor: pointer; }
+.btn-primary { background: #10b981; color: white; border: none; padding: 0.75rem; border-radius: 0.375rem; cursor: pointer; width: 100%; font-weight: bold; margin-top: 1rem; }
+.items-list { list-style: none; margin: 1rem 0; background: #f1f5f9; border-radius: 0.375rem; padding: 0.5rem 1rem; }
+.items-list li { display: flex; justify-content: space-between; padding: 0.25rem 0; font-size: 0.875rem; }
+.btn-danger-text { background: none; border: none; color: #ef4444; cursor: pointer; }
+.grid-pedidos { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+.pedido-card { background: white; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); padding: 1.25rem; border-left: 4px solid #6366f1; }
+.pedido-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: #64748b; margin-bottom: 0.75rem; }
+.pedido-id { font-weight: bold; color: #1e293b; }
+.badge-total { background: #e0e7ff; color: #4338ca; padding: 0.2rem 0.5rem; border-radius: 0.25rem; font-weight: bold; }
+.detalles-ul { list-style: none; padding: 0; margin: 0.5rem 0 0; font-size: 0.85rem; border-top: 1px solid #e2e8f0; padding-top: 0.5rem; }
+.detalles-ul li { display: flex; justify-content: space-between; color: #475569; margin-bottom: 0.25rem; }
+.no-data { color: #64748b; }

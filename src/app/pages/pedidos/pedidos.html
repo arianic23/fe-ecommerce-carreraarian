@@ -1,0 +1,66 @@
+<div class="pedidos-container">
+  <h2>Gestión de Pedidos</h2>
+
+  <!-- Sección de Creación de Pedido -->
+  <div class="card-form">
+    <h3>Crear Nuevo Pedido</h3>
+
+    <div class="form-row">
+      <input type="text" [(ngModel)]="clienteNuevo" placeholder="Nombre del Cliente" class="form-control" />
+    </div>
+
+    <div class="form-row inline">
+      <select [(ngModel)]="productoSeleccionadoId" class="form-control">
+        <option [ngValue]="null" disabled>Seleccione un producto</option>
+        @for (prod of productosDisponibles(); track prod.id) {
+          <option [ngValue]="prod.id">{{ prod.nombre }} - S/ {{ prod.precio }} (Stock: {{ prod.stock }})</option>
+        }
+      </select>
+      <input type="number" [(ngModel)]="cantidadSeleccionada" min="1" class="form-control small" placeholder="Cant" />
+      <button type="button" class="btn-secondary" (click)="agregarItemAlPedido()">Añadir Item</button>
+    </div>
+
+    @if (itemsPedido.length > 0) {
+      <ul class="items-list">
+        @for (item of itemsPedido; track $index) {
+          <li>
+            <span>{{ item.nombre }} (x{{ item.cantidad }})</span>
+            <button class="btn-danger-text" (click)="removerItem($index)">Eliminar</button>
+          </li>
+        }
+      </ul>
+      <button class="btn-primary" (click)="guardarPedido()">Confirmar y Registrar Pedido</button>
+    }
+  </div>
+
+  <!-- Listado de Pedidos Existentes -->
+  <div class="pedidos-list-section">
+    <h3>Historial de Pedidos Realizados</h3>
+    <div class="grid-pedidos">
+      @for (pedido of pedidos(); track pedido.id) {
+        <div class="pedido-card">
+          <div class="pedido-header">
+            <span class="pedido-id">Pedido #{{ pedido.id }}</span>
+            <span class="pedido-fecha">{{ pedido.fechaCompra | date:'medium' }}</span>
+          </div>
+          <div class="pedido-body">
+            <p><strong>Cliente:</strong> {{ pedido.cliente }}</p>
+            <p><strong>Monto Total:</strong> <span class="badge-total">S/ {{ pedido.montoTotal }}</span></p>
+
+            <h4>Detalles de la Compra:</h4>
+            <ul class="detalles-ul">
+              @for (det of pedido.detalles; track det.id) {
+                <li>
+                  <span>{{ det.producto.nombre }} (Cant: {{ det.cantidad }})</span>
+                  <span>Subtotal: S/ {{ det.subtotal }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      } @empty {
+        <p class="no-data">No hay pedidos registrados.</p>
+      }
+    </div>
+  </div>
+</div>

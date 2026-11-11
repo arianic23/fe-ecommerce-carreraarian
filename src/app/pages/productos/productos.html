@@ -1,0 +1,50 @@
+<div class="productos-container">
+  <div class="productos-header">
+    <h2>Productos</h2>
+    <p>Administre el catálogo de productos</p>
+  </div>
+
+  <div class="productos-grid-layout">
+    <div class="card-panel">
+      <div class="table-responsive">
+        <table class="modern-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Marca</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of productos(); track p.id) {
+              <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.nombre }}</td>
+                <td><span class="badge-cat">{{ p.categoria }}</span></td>
+                <td>{{ p.marca }}</td>
+                <td>S/ {{ p.precio }}</td>
+                <td><span class="badge-stock">{{ p.stock }}</span></td>
+                <td class="actions-cell">
+                  <button class="btn-icon btn-edit" (click)="editar(p)">Editar</button>
+                  <button class="btn-icon btn-delete" (click)="eliminar(p)">Eliminar</button>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="7">No hay productos registrados.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <app-producto-form (productoGuardado)="cargarProductos()" />
+    </div>
+  </div>
+</div>

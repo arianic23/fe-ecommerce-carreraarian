@@ -1,0 +1,131 @@
+<div class="form-card">
+  <h3>{{ producto().id ? 'Editar Producto' : 'Nuevo Producto' }}</h3>
+
+  <form (ngSubmit)="guardar()" #f="ngForm" novalidate>
+
+    <!-- Campo Nombre -->
+    <div class="form-group-modern">
+      <label>Nombre del Producto</label>
+      <input
+        type="text"
+        name="nombre"
+        [(ngModel)]="producto().nombre"
+        required
+        minlength="3"
+        #nombre="ngModel"
+        class="form-control-modern"
+        placeholder="Ej. Laptop Gamer">
+      @if (nombre.invalid && (nombre.dirty || nombre.touched)) {
+        <div class="error-msg">
+          @if (nombre.errors?.['required']) {
+            <span>El nombre es obligatorio.</span>
+          }
+          @if (nombre.errors?.['minlength']) {
+            <span>Debe tener al menos 3 caracteres.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Campo Categoría -->
+    <div class="form-group-modern">
+      <label>Categoría</label>
+      <input
+        type="text"
+        name="categoria"
+        [(ngModel)]="producto().categoria"
+        required
+        #categoria="ngModel"
+        class="form-control-modern"
+        placeholder="Ej. Laptops">
+      @if (categoria.invalid && (categoria.dirty || categoria.touched)) {
+        <div class="error-msg">
+          <span>La categoría es obligatoria.</span>
+        </div>
+      }
+    </div>
+
+    <!-- Campo Marca -->
+    <div class="form-group-modern">
+      <label>Marca</label>
+      <input
+        type="text"
+        name="marca"
+        [(ngModel)]="producto().marca"
+        required
+        #marca="ngModel"
+        class="form-control-modern"
+        placeholder="Ej. Asus">
+      @if (marca.invalid && (marca.dirty || marca.touched)) {
+        <div class="error-msg">
+          <span>La marca es obligatoria.</span>
+        </div>
+      }
+    </div>
+
+    <!-- Campo Código de barras -->
+    <div class="form-group-modern">
+      <label>Código de barras</label>
+      <input
+        type="text"
+        name="codigoBarras"
+        [(ngModel)]="producto().codigoBarras"
+        required
+        #codigoBarras="ngModel"
+        class="form-control-modern"
+        placeholder="Ej. 7750001234567">
+      @if (codigoBarras.invalid && (codigoBarras.dirty || codigoBarras.touched)) {
+        <div class="error-msg">
+          <span>El código de barras es obligatorio.</span>
+        </div>
+      }
+    </div>
+
+    <!-- Campo Precio -->
+    <div class="form-group-modern">
+      <label>Precio (S/)</label>
+      <input
+        type="number"
+        name="precio"
+        [(ngModel)]="producto().precio"
+        min="0.01"
+        step="0.01"
+        required
+        #precio="ngModel"
+        class="form-control-modern">
+      @if (precio.invalid && (precio.dirty || precio.touched)) {
+        <div class="error-msg">
+          <span>El precio debe ser mayor a 0.</span>
+        </div>
+      }
+    </div>
+
+    <!-- Campo Stock -->
+    <div class="form-group-modern">
+      <label>Stock Disponible</label>
+      <input
+        type="number"
+        name="stock"
+        [(ngModel)]="producto().stock"
+        min="0"
+        required
+        #stock="ngModel"
+        class="form-control-modern">
+      @if (stock.invalid && (stock.dirty || stock.touched)) {
+        <div class="error-msg">
+          <span>El stock no puede ser negativo.</span>
+        </div>
+      }
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="form-actions">
+      <button type="submit" class="btn-submit" [disabled]="f.invalid">
+        {{ producto().id ? 'Guardar Cambios' : 'Registrar' }}
+      </button>
+      @if (producto().id) {
+        <button type="button" class="btn-cancel" (click)="limpiarFormulario()">Cancelar</button>
+      }
+    </div>
+  </form>
+</div>
